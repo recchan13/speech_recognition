@@ -1,0 +1,26 @@
+body{
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    flex-direction: column;
+}
+.container{
+    width: 50%;
+    height: 50px;
+    display: flex;
+    background-color: lightcoral;
+    padding: 10px;
+}
+.text-container{
+    width: 50%;
+    min-height: 50px;
+    display: flex;
+    background-color: rgb(128, 240, 216);
+    padding: 10px;
+}
+img{
+    height: 50px;
+}
+.sound{
+    color: lightslategray;
+}
