@@ -3,20 +3,27 @@ body{
     align-items: center;
     padding: 50px;
     flex-direction: column;
+    font-family: sans-serif;
 }
+
 .container{
     width: 50%;
-    height: 50px;
+    min-height: 50px;
+    align-items: center;
     display: flex;
-    background-color: lightcoral;
+    background-color: rgb(128, 240, 197);
+    padding: 10px;   
+    flex-direction: column; 
+}
+
+#transcript{
+    width: 95%;
+    min-height: 50px;
+    background-color: rgb(128, 195, 240);
     padding: 10px;
 }
-.text-container{
-    width: 50%;
-    min-height: 50px;
-    display: flex;
-    background-color: rgb(128, 240, 216);
-    padding: 10px;
+p{
+    color: black;
 }
 img{
     height: 50px;

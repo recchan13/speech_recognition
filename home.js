@@ -1,39 +1,28 @@
-const btn = document.getElementById('btn');
-const result = document.getElementById('result');
+window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; 
+window.SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
+var grammar = '#JSGF V1.0;'
 
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition; 
 const recognition = new SpeechRecognition();
+var speechRecognitionList = new SpeechGrammarList();
+recognition.interimResults = true;
 
-// let paragraph = document.createElement('p');
-// let container =  document.querySelector('.text-container');
-// container.appendChild(paragraph);
-// const sound = document.querySelector('.sound')
+speechRecognitionList.addFromString(grammar, 1);
+recognition.lang = 'en-US';
 
-recognition.onstart = function(){
-    console.log('oke')
-}
+const transcript_element = document.getElementById("transcript");
+let p = document.createElement("p");
+transcript_element.appendChild(p);
 
-recognition.onresult = function(event){
-    // console.log(event);
-    var text = event.results[0][0].transcript;
-    console.log(text);
-    document.getElementById('result').innerHTML = text;
+recognition.addEventListener("result", (e) => {
+    const transcript = Array.from(e.results)
+    .map(result => result[0])
+    .map(result => result.transcript);
     
-}
-
-// icon.addEventListener('click', ()=>{
-//     sound.play();
-//     dictate();
-// });
-
-// const dictate = () => {
-//     recognition.start();
-//     recognition.onresult=(event) => {
-//         const speechToText = Array.from(event.results)
-//         .map(result => result[0])
-//         .map(result => result.transcript)
-//         .join(' ');
-//         console.log(speechToText)
-//         paragraph.textContent = speechToText;
-//     }
-// }
+    p.textContent = transcript;
+    if (e.results[0].isFinal){
+        p = document.createElement("p");
+        p.textContent = transcript;
+        transcript_element.appendChild(p);
+        p.textContent = "";
+    }
+});
